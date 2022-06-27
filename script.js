@@ -5,13 +5,14 @@ generateBtn.addEventListener("click", writePassword);
 
 
 
-var length;
+// var length;
 var availableCharacters = []
+var finalCharacter = []
 
 var lowercaseLetters = "abcdefghijklmnopqrstuvwxyz"
 var uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var numberNumbers = "0123456789"
-var specialCharacters = "`~!@#$%^&*()-_=+<>"
+var specialCharacters = "~!@#$%^&*()-_=+<>?,./"
 
 // availableCharacters.push(lowercaseLetters);
 // console.log(availableCharacters)
@@ -28,28 +29,23 @@ function generatePassword(){
     //1. Prompt user for parameters
       // Prompt for length
     var length = prompt("How many characters do you need?");
-        console.log(length)
     // logic for length parameters & validity of answer
-    var minCharacters = "8"
-    var maxCharacters = "128"
-    if (length.length>=minCharacters === length.length<=maxCharacters) {
-        console.log("good choice");
+    if (length>=8 && length<=128) {
+        console.log("good work")
     } else {
+        // if user entry is not valid, inform user of valid options
         alert("Please choose a number between 8 and 128");
+        // recall function
         generatePassword();
     }
-
-
-    console.log("wrong number")
-    // if not, user process needs to restart function
         // Prompt for lowercase
     var lowercase = confirm("Click OK if you need lowercase letters.")
         // Prompt for uppercase
     var uppercase = confirm("Click OK if you need uppercase letters.")
         // Prompt for numbers
-    var numbers = confirm("You need numbers")
+    var numbers = confirm("Click OK if you need numbers.")
         // Prompt for special characters
-    var special = confirm("You need special characters")
+    var special = confirm("Click OK if you need special characters.")
         // logic for creating availableCharacters string
     if (lowercase) {
         availableCharacters += lowercaseLetters
@@ -64,12 +60,16 @@ function generatePassword(){
         availableCharacters += specialCharacters
     }
     console.log(availableCharacters)
-    // 2. Create random password from available characters
-    // for loop run the number of times that user sets length to
-    // add random character to password string
-// for (i=0; i=length.length; i++) {
-    // add one random character to password
-// }
+
+    // 2. Create random password from available characters and a for loop run the number of times that user sets length to
+    for (var i = 0; i < length; i++) {
+        password += availableCharacters[Math.floor(Math.random()*availableCharacters.length)];
+        console.log(password);
+        // answer += availableCharacters[i];
+    }
+
+    // var password = randomPassword.concat();
+
     return password
 }
   
